@@ -1,0 +1,39 @@
+services:
+  odoo:
+    image: odoo:17
+    restart: always
+    ports:
+      - "8069:8069"
+    depends_on:
+      - db
+    environment:
+      - USER=odoo
+      - PASSWORD=odoo
+    volumes:
+      - ./config:/etc/odoo
+      - ./extra-addons:/mnt/extra-addons
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_DB=postgres
+    volumes:
+      - local_pgdata:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ygarcialago@danielcastelao.org
+      PGADMIN_DEFAULT_PASSWORD: 1234
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+volumes:
+  local_pgdata:
+  pgadmin_data:
