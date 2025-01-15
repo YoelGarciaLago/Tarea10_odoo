@@ -4,12 +4,12 @@ services:
     restart: always
     ports:
       - "8069:8069"
-    depends_on:
+    depends_on: #Dependencia necesaria para el servicio
       - db
-    environment:
+    environment: #Variables para saltarse la creación de una cuenta
       - USER=odoo
       - PASSWORD=odoo
-    volumes:
+    volumes: #Volumen para que la info persista
       - ./config:/etc/odoo
       - ./extra-addons:/mnt/extra-addons
   db:
@@ -18,20 +18,20 @@ services:
     environment:
       - POSTGRES_USER=odoo
       - POSTGRES_PASSWORD=odoo
-    volumes:
+    volumes: #Volumen para que la info persista
       - local_pgdata:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4_container
     restart: always
-    depends_on:
+    depends_on: #Dependencia necesaria para el servicio
       - db
     ports:
       - "8888:80"
-    environment:
+    environment: #Variables para saltarse la creación de una cuenta
       PGADMIN_DEFAULT_EMAIL: ygarcialago@danielcastelao.org
       PGADMIN_DEFAULT_PASSWORD: 1234
-    volumes:
+    volumes: #Volumen para que la info persista
       - pgadmin_data:/var/lib/pgadmin
 volumes:
   local_pgdata:
