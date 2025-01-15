@@ -92,7 +92,7 @@ Si todo se siguió bien tendría que aparecer lo siguiente:
 En teoría, este compose no tiene ningún puerto mapeado en el psql, por lo que para conectarse de manera externa a la red de docker usaría otro puerto, pero, si se definiese de la siguiente manera:   
 ``
 ports:
-  - 5432:5432
+  5432:5432
 ``
 No se podría crear el contenedor.
 
