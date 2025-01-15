@@ -1,48 +1,6 @@
 # Tarea10_odoo
-### Compose comentado   
-``
-services:
-  odoo:
-    image: odoo:17
-    restart: always
-    ports: #Puerto por defecto de este servicio
-      - "8069:8069"
-    depends_on: #Dependencia necesaria de este servicio para hacer este ejercicio
-      - db
-    environment: #Necesario para saltarse el proceso de crear cuenta
-      - USER=odoo
-      - PASSWORD=odoo
-    volumes: #Volumen para que la info de este contenedor persista
-      - ./config:/etc/odoo
-      - ./extra-addons:/mnt/extra-addons
-  db:
-    image: postgres:latest
-    restart: always
-    environment:
-      - POSTGRES_USER=odoo
-      - POSTGRES_PASSWORD=odoo
-    volumes: #Volumen para que la info de este contenedor persista
-      - local_pgdata:/var/lib/postgresql/data
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin4_container
-    restart: always
-    depends_on: #Dependencia necesaria de este servicio para hacer este ejercicio (y para que vaya bien el servicio)
-      - db
-    ports:
-      - "8888:80"
-    environment: #Variables para que no sea necesario crear la cuenta de pgAdmin
-      PGADMIN_DEFAULT_EMAIL: ygarcialago@danielcastelao.org
-      PGADMIN_DEFAULT_PASSWORD: 1234
-    volumes: #Volumen para que la info de este contenedor persista
-      - pgadmin_data:/var/lib/pgadmin
-volumes:
-  local_pgdata:
-  pgadmin_data:
-``
-    
+## Levantar el compose
 Ya con el compose creado tendremos que poner el siguiente comando:  
-
 ``
 sudo docker compose up -d
 ``
