@@ -1,7 +1,6 @@
 # Tarea10_odoo
-### Compose comentado
+### Compose comentado   
 ``
-
 services:
   odoo:
     image: odoo:17
@@ -40,27 +39,23 @@ services:
 volumes:
   local_pgdata:
   pgadmin_data:
-  
 ``
     
 Ya con el compose creado tendremos que poner el siguiente comando:  
 
 ``
-
-sudo docker compose up -d      
-
+sudo docker compose up -d
 ``
-
 *El parámetro -d se usa para que los lance en 2do plano*
 
 Para poder acceder al contenedor a través del navegador tendrás que hacer lo siguiente *si no les pusiste un nombre personalizado al contenedor*:  
 ``
-sudo docker ps       
+sudo docker ps
 ``
 Este comando te mostrará, entre otras cosas, **el id del contenedor**, lo que es necesario para es siguiente comando:   
 
 ``
-sudo docker inspect <id_del_contenedor-nombre>        
+sudo docker inspect <id_del_contenedor-nombre>
 ``
 
 Con este comando se te mostrará la **información** del contenedor, pero lo que nos interesa es el apartado de **IP_Address** y el de **Ports** *(si no sabes, no te acuerdas o no quieres verlo en el compose)*.  
@@ -92,8 +87,7 @@ Si todo se siguió bien tendría que aparecer lo siguiente:
 ![Cap4](https://github.com/YoelGarciaLago/Tarea10_odoo/blob/main/C4.png?raw=true)    
 ![Cap5](https://github.com/YoelGarciaLago/Tarea10_odoo/blob/main/C5.png?raw=true)   
 
-
-## Preguntas teóricas   
+## Preguntas teóricas     
 ### ¿Qué pasa si el ordenador local tiene el puerto 5432 ocupado?   
 En teoría, este compose no tiene ningún puerto mapeado en el psql, por lo que para conectarse de manera externa a la red de docker usaría otro puerto, pero, si se definiese de la siguiente manera:   
 ``
@@ -105,7 +99,7 @@ No se podría crear el contenedor.
 ### ¿Qué pasa si el ordenador local tiene el puerto 8069 ocupado?   
 En este caso, sí que nos saltaría el error de que no se puede crear el contenedor de primeras, ya que en el compose se define los puertos que va a utilizar el servicio
 
-### ¿Cómo solucionarlo?
+### ¿Cómo solucionarlo?     
 Para solucionar este conflicto tienes dos opciones:  
 - Parar los servicios de la máquina local *(con comandos de systemctl por ejemplo)*.   
 - Modificar los puertos del compose.    
