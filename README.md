@@ -1,6 +1,7 @@
 # Tarea10_odoo
 ### Compose comentado
 ``
+
 services:
   odoo:
     image: odoo:17
@@ -39,22 +40,29 @@ services:
 volumes:
   local_pgdata:
   pgadmin_data:
+  
+``
+    
+Ya con el compose creado tendremos que poner el siguiente comando:  
+
 ``
 
-Ya con el compose creado tendremos que poner el siguiente comando:  
+sudo docker compose up -d      
+
 ``
-sudo docker compose up -d   
-``
+
 *El parámetro -d se usa para que los lance en 2do plano*
 
 Para poder acceder al contenedor a través del navegador tendrás que hacer lo siguiente *si no les pusiste un nombre personalizado al contenedor*:  
 ``
-sudo docker ps
+sudo docker ps       
 ``
 Este comando te mostrará, entre otras cosas, **el id del contenedor**, lo que es necesario para es siguiente comando:   
+
 ``
-sudo docker inspect <id_del_contenedor-nombre>
+sudo docker inspect <id_del_contenedor-nombre>        
 ``
+
 Con este comando se te mostrará la **información** del contenedor, pero lo que nos interesa es el apartado de **IP_Address** y el de **Ports** *(si no sabes, no te acuerdas o no quieres verlo en el compose)*.  
 
 ## Servicios  
